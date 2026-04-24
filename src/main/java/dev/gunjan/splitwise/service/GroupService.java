@@ -2,6 +2,7 @@ package dev.gunjan.splitwise.service;
 
 import dev.gunjan.splitwise.dto.GroupCreateRequestDTO;
 import dev.gunjan.splitwise.exception.GroupNotFoundException;
+import dev.gunjan.splitwise.model.Expense;
 import dev.gunjan.splitwise.model.Group;
 import dev.gunjan.splitwise.model.User;
 import dev.gunjan.splitwise.repository.GroupRepository;
@@ -39,6 +40,14 @@ public class GroupService {
         return groupRepository.findById(id).orElseThrow(
                 ()-> new GroupNotFoundException("Group with given id not found")
         );
+    }
+
+    public Group addExpenseToGroup(Expense expense, int groupId){
+        Group group = getGroupById(groupId);
+        List<Expense> expenses = group.getExpenses();
+        expenses.add(expense);
+        group.setExpenses(expenses);
+        return groupRepository.save(group);
     }
 
 }
