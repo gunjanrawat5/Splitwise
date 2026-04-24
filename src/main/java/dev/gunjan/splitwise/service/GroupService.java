@@ -1,6 +1,7 @@
 package dev.gunjan.splitwise.service;
 
 import dev.gunjan.splitwise.dto.GroupCreateRequestDTO;
+import dev.gunjan.splitwise.dto.SettleUpTransactionResponseDTO;
 import dev.gunjan.splitwise.exception.GroupNotFoundException;
 import dev.gunjan.splitwise.model.Expense;
 import dev.gunjan.splitwise.model.Group;
@@ -48,6 +49,10 @@ public class GroupService {
         expenses.add(expense);
         group.setExpenses(expenses);
         return groupRepository.save(group);
+    }
+
+    public SettleUpTransactionResponseDTO settleUp(int groupId){
+        return null;
     }
 
 }

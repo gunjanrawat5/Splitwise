@@ -2,6 +2,7 @@ package dev.gunjan.splitwise.controller;
 
 
 import dev.gunjan.splitwise.dto.GroupCreateRequestDTO;
+import dev.gunjan.splitwise.dto.SettleUpTransactionResponseDTO;
 import dev.gunjan.splitwise.model.Group;
 import dev.gunjan.splitwise.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class GroupController {
     @GetMapping("/group/{id}")
     public ResponseEntity<Group> getGroupById(@PathVariable("id") int id){
         return ResponseEntity.ok(groupService.getGroupById(id));
+    }
+
+    @GetMapping("/group/{groupId}/settle")
+    public ResponseEntity<SettleUpTransactionResponseDTO> settleGroup(@PathVariable("groupId") int groupId){
+        return ResponseEntity.ok(groupService.settleUp(groupId));
     }
 
 }
