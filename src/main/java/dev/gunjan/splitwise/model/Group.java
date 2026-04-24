@@ -1,9 +1,6 @@
 package dev.gunjan.splitwise.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,8 +17,10 @@ public class Group extends BaseModel{
     @ManyToMany
     private List<User> members;
     @OneToMany
+    @JoinColumn(name = "group_id")
     private List<Expense> expenses; // record of money spent -> who paid how much and who owes how much
     @OneToMany
+    @JoinColumn(name = "group_id")
     private List<Transaction> transactions; // who needs to pay whom to clear debts(settle up!)
-
+    private boolean isAllSettlementDone;
 }
